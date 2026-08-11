@@ -59,6 +59,10 @@ ssh maplibre 'cd ~/projects/maplibre-gl-js/maplibre-gl-panoramax && podman compo
 
 ## Conventions
 
+- **After every finished action, suggest the next GitHub issue/PR to work
+  on** — pick from the open issues/PRs across maplibre-gl-photosphere,
+  maplibre-gl-panoramax and mapmax, and say why it is next.
+
 - Features are additive; keep the existing API intact (see CHANGELOG.md).
 - `src/` ships as-is (no build step): plain ES modules, no TypeScript syntax.
 - This package knows the **Panoramax API**, never any UI: request builders and
