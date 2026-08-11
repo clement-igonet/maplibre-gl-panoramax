@@ -20,8 +20,11 @@ rsync -ac --delete --exclude node_modules --exclude .git \
     ./ maplibre:projects/maplibre-gl-js/maplibre-gl-panoramax/
 ssh maplibre 'cd ~/projects/maplibre-gl-js/maplibre-gl-panoramax && podman compose run --rm test'
 
-# preview the GitHub Pages demo (serves the repo root, as Pages does):
-ssh maplibre 'cd ~/projects/maplibre-gl-js/maplibre-gl-panoramax && WEB_PORT=8093 podman compose up -d web'
+# preview the demo — NO HOST PORT: panoramax has no band in the VM platform
+# table yet (debian:~/projects/platform/caddy/Caddyfile); until one is
+# assigned the web service is compose-network-only. Preview via the smoke
+# service below, or the live Pages URL after a push.
+ssh maplibre 'cd ~/projects/maplibre-gl-js/maplibre-gl-panoramax && podman compose up -d web'
 
 # browser smoke of the demo — REQUIRED after touching docs/ or src/ exports:
 # a static server 200s every asset while one missing export kills the whole
