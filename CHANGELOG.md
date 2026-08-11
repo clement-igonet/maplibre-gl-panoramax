@@ -1,8 +1,8 @@
 # Changelog
 
-## 0.2.0 — unreleased
+## main
 
-### Added
+### ✨ Features and improvements
 - **`gesture.js` — the pose-editor algebra**, moved here from the
   maplibre-gl-photosphere 0.4.0 draft by design: editing belongs next to the
   data source that stores the correction; viewers only render. Self-contained
@@ -11,7 +11,15 @@
   `M' = M·G⁻¹`, drift-free), `poseFromMatrix` (gimbal-safe exact Euler
   roundtrip), `panoPoseMatrix`, `poseTransform`, `mat3Multiply`,
   `axisRotationMatrix`. 12 tests ported with it (31 total).
+- Pages demo: the MapMax app running verbatim on the published plugin API
+  (data/auth/edit modules are re-export shims) — browse coverage, enter a
+  360°, ⌖ Level with live preview, Connect to Panoramax, Save writes the
+  pose PATCH to the picture's home instance.
+- Releases now follow the maplibre-gl-js model via maplibre/reusable-workflows
+  (version-bump PR → npm publish + tag + GitHub Release from this section).
 
+### 🐞 Bug fixes
+- _...Add new stuff here..._
 
 ## 0.1.0 — 2026-08-11
 
