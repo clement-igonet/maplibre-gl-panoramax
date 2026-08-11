@@ -1,0 +1,39 @@
+{
+  "name": "maplibre-gl-panoramax",
+  "version": "0.1.0",
+  "description": "Panoramax for MapLibre GL JS: browse the federated street-level imagery catalog (STAC client, map layers, tiled-HD configs) and write corrections back (pose/position PATCH, token claim flow). Pairs with maplibre-gl-photosphere for immersive viewing/editing.",
+  "type": "module",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "files": [
+    "src/",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "vitest run"
+  },
+  "keywords": [
+    "maplibre",
+    "panoramax",
+    "street-view",
+    "panorama",
+    "stac",
+    "360"
+  ],
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "vitest": "^4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clement-igonet/maplibre-gl-panoramax.git"
+  },
+  "homepage": "https://github.com/clement-igonet/maplibre-gl-panoramax",
+  "bugs": {
+    "url": "https://github.com/clement-igonet/maplibre-gl-panoramax/issues"
+  }
+}
