@@ -3,7 +3,7 @@
 ## Execution environment
 
 - **All build/test/tooling commands run on the remote VM, reached with
-  `ssh maplibre`** (host `cka-ovh-dedicated-01`). The local workstation is for
+  `ssh panoramax`** (host `cka-ovh-dedicated-01`). The local workstation is for
   editing and git only — it deliberately has no node/npm toolchain.
 - **Use containers, not direct commands.** Never invoke `node`, `npm`, `npx`,
   `python`, … straight on a host. The remote VM is **podman-ready** (podman ≥ 5
@@ -11,26 +11,26 @@
 - **Rely on `docker-compose.yml` as the reference setup.** Every runnable
   concern (tests, demo preview) is a compose service.
 
-The repo's home on the VM is `~/projects/maplibre-gl-js/maplibre-gl-panoramax`
-(next to the maplibre-gl-js and maplibre-gl-photosphere checkouts).
+The repo's home on the VM is `~/projects/maplibre-gl-panoramax`
+(its own per-product VM account, per the platform user split).
 
 ```sh
 # sync the working tree to the VM, then run the suite there:
 rsync -ac --delete --exclude node_modules --exclude .git \
-    ./ maplibre:projects/maplibre-gl-js/maplibre-gl-panoramax/
-ssh maplibre 'cd ~/projects/maplibre-gl-js/maplibre-gl-panoramax && podman compose run --rm test'
+    ./ panoramax:projects/maplibre-gl-panoramax/
+ssh panoramax 'cd ~/projects/maplibre-gl-panoramax && podman compose run --rm test'
 
-# preview the demo — NO HOST PORT: panoramax has no band in the VM platform
-# table yet (debian:~/projects/platform/caddy/Caddyfile); until one is
-# assigned the web service is compose-network-only. Preview via the smoke
-# service below, or the live Pages URL after a push.
-ssh maplibre 'cd ~/projects/maplibre-gl-js/maplibre-gl-panoramax && podman compose up -d web'
+# preview the demo — NO HOST PORT yet: the 85xx band (8504 = dev preview) is
+# reserved in confinia/platform PR #5; until it merges the web service stays
+# compose-network-only. Preview via the smoke service below, or the live
+# Pages URL after a push.
+ssh panoramax 'cd ~/projects/maplibre-gl-panoramax && podman compose up -d web'
 
 # browser smoke of the demo — REQUIRED after touching docs/ or src/ exports:
 # a static server 200s every asset while one missing export kills the whole
 # ES-module graph; only a real browser sees that. Also run it against the live
 # site after a deploy (TARGET_URL=https://clement-igonet.github.io/maplibre-gl-panoramax/docs/).
-ssh maplibre 'cd ~/projects/maplibre-gl-js/maplibre-gl-panoramax && podman compose run --rm smoke'
+ssh panoramax 'cd ~/projects/maplibre-gl-panoramax && podman compose run --rm smoke'
 ```
 
 ## Deployment
