@@ -22,6 +22,12 @@ ssh maplibre 'cd ~/projects/maplibre-gl-js/maplibre-gl-panoramax && podman compo
 
 # preview the GitHub Pages demo (serves the repo root, as Pages does):
 ssh maplibre 'cd ~/projects/maplibre-gl-js/maplibre-gl-panoramax && WEB_PORT=8093 podman compose up -d web'
+
+# browser smoke of the demo — REQUIRED after touching docs/ or src/ exports:
+# a static server 200s every asset while one missing export kills the whole
+# ES-module graph; only a real browser sees that. Also run it against the live
+# site after a deploy (TARGET_URL=https://clement-igonet.github.io/maplibre-gl-panoramax/docs/).
+ssh maplibre 'cd ~/projects/maplibre-gl-js/maplibre-gl-panoramax && podman compose run --rm smoke'
 ```
 
 ## Deployment

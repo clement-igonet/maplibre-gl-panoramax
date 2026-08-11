@@ -4,6 +4,10 @@
 #   podman compose run --rm test      # vitest suite in a Node container
 #   podman compose up -d web          # demo preview on 127.0.0.1:8093 —
 #                                     # serves the repo root like GitHub Pages
+#   podman compose run --rm smoke     # containerized Chromium loads the demo
+#                                     # (module graph + boot + zero errors);
+#                                     # TARGET_URL overrides, e.g. the live
+#                                     # Pages URL after a deploy
 services:
   test:
     image: docker.io/library/node:22-alpine
@@ -20,3 +24,14 @@ services:
     volumes:
       - .:/srv:ro
     command: caddy file-server --root /srv --listen :80
+
+  # Browser-level guard for the demo: a static file server can 200 every asset
+  # while the ES-module graph is dead (one missing export kills the page) —
+  # only a real browser catches that class of failure.
+  smoke:
+    build: tests/browser
+    depends_on:
+      - web
+    environment:
+      # pass-through: defaults to http://web/docs/ inside the script
+      - TARGET_URL
