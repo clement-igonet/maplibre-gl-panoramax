@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.2.0 — unreleased
+
+### Added
+- **`gesture.js` — the pose-editor algebra**, moved here from the
+  maplibre-gl-photosphere 0.4.0 draft by design: editing belongs next to the
+  data source that stores the correction; viewers only render. Self-contained
+  (mirrors the viewer's pose conventions without depending on it):
+  `composePoseGesture` ("grab the photo": view-space deltas compose as
+  `M' = M·G⁻¹`, drift-free), `poseFromMatrix` (gimbal-safe exact Euler
+  roundtrip), `panoPoseMatrix`, `poseTransform`, `mat3Multiply`,
+  `axisRotationMatrix`. 12 tests ported with it (31 total).
+
+
 ## 0.1.0 — 2026-08-11
 
 First release — the Panoramax data/auth/edit layer extracted from

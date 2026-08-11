@@ -6,10 +6,15 @@
 //   edit.js    write corrections back: pose (pitch/roll/yaw) and position
 //              PATCH builders, home-instance resolution, exif pose, geo offsets
 //   auth.js    browser sign-in to an instance: token generate → claim → poll
+//   gesture.js the pose-EDITOR algebra: compose "grab the photo" drags onto a
+//              capture pose, re-extract yaw/pitch/roll for the PATCH
 //
-// Pairs with maplibre-gl-photosphere for immersive viewing and pose editing:
-// feed `normalizeItem()` pictures to its targets (imageUrl/bearing/tiles), and
-// its `getPanoPose()` output to `posePatchRequest()` here.
+// Editing lives in THIS package by design (corrections belong to the data
+// source); viewers such as maplibre-gl-photosphere render the results. Feed
+// `normalizeItem()` pictures to viewer targets (imageUrl/bearing/tiles),
+// `composePoseGesture()` results to the viewer's `setPanoPose()` live, and
+// the final pose to `posePatchRequest()` here for the write-back.
 export * from './client.js';
 export * from './edit.js';
 export * from './auth.js';
+export * from './gesture.js';
