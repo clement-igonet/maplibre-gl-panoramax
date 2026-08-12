@@ -61,9 +61,10 @@ ssh panoramax 'cd ~/projects/maplibre-gl-panoramax && podman compose run --rm sm
 
 ## Conventions
 
-- **After every finished action, suggest the next GitHub issue/PR to work
-  on** — pick from the open issues/PRs across maplibre-gl-photosphere,
-  maplibre-gl-panoramax and mapmax, and say why it is next.
+- **After every finished task, suggest the next steps to focus on** — the
+  concrete actions in priority order (merges/saves waiting on the user
+  included), plus the next GitHub issue/PR picked from the open ones across
+  maplibre-gl-photosphere, maplibre-gl-panoramax and mapmax, with why.
 - **Always hyperlink issue/PR references** — every mention of an issue or PR
   links to it (e.g. [mapmax#110](https://github.com/clement-igonet/mapmax/issues/110)),
   so one click gets there.
