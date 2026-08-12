@@ -3,6 +3,14 @@
 ## main
 
 ### ✨ Features and improvements
+- **Street-view navigation** (`nav.js`, [#1](https://github.com/clement-igonet/maplibre-gl-panoramax/issues/1)):
+  `viewerTarget()` (normalized picture → maplibre-gl-photosphere
+  enter/goTo target incl. exif pose), `navTargets()` (pure selection:
+  prev/next from the sequence links always offered, same-sequence and
+  cross-sequence neighbours within `maxDistanceM`, deduped, prev/next-first
+  then by distance, capped), `navigationSet()` (one nearby search →
+  the set), plus `offsetMeters`/`bearingBetween`/`distanceMeters` geometry
+  matching the viewer's ground-overlay conventions.
 - **`gesture.js` — the pose-editor algebra**, moved here from the
   maplibre-gl-photosphere 0.4.0 draft by design: editing belongs next to the
   data source that stores the correction; viewers only render. Self-contained
