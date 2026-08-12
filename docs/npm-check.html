@@ -35,7 +35,7 @@
     const status = document.getElementById('status');
     try {
         const maplibregl = (await import('maplibre-gl')).default;
-        const {addPanoramaxLayers, SEQUENCES_LAYER, PICTURES_LAYER} = await import('maplibre-gl-panoramax');
+        const {addPanoramaxLayers, onPictureClick, getPicture, SEQUENCES_LAYER, PICTURES_LAYER} = await import('maplibre-gl-panoramax');
         const {version} = await (await fetch('https://unpkg.com/maplibre-gl-panoramax/package.json')).json();
 
         const map = new maplibregl.Map({
@@ -54,6 +54,28 @@
             status.textContent = ok
                 ? `OK npm maplibre-gl-panoramax@${version} — coverage layers added`
                 : `ERROR: layers missing after addPanoramaxLayers (npm @${version})`;
+        });
+
+        // Click a picture dot → metadata popup, straight from the npm API
+        // client; "street view" deep-links into the full demo (?pic=).
+        onPictureClick(map, async (id, feature) => {
+            const anchor = feature.geometry.coordinates;
+            const popup = new maplibregl.Popup({maxWidth: '260px'})
+                .setLngLat(anchor)
+                .setHTML('<em>loading picture…</em>')
+                .addTo(map);
+            try {
+                const pic = await getPicture(id);
+                popup.setHTML(`
+                    <img src="${pic.assets.thumb || pic.assets.sd}" alt="" style="width:240px;border-radius:4px;display:block" />
+                    <div style="margin-top:6px;font:12px/1.5 system-ui">
+                        ${pic.type === 'equirectangular' ? '360°' : 'flat'} ·
+                        ${(pic.datetime || '').slice(0, 10)} · ${pic.producer || ''}<br>
+                        <a href="./index.html?pic=${encodeURIComponent(pic.id)}">Open in street view ↗</a>
+                    </div>`);
+            } catch (err) {
+                popup.setHTML(`<em>ERROR: ${err.message || err}</em>`);
+            }
         });
         map.on('error', (e) => {
             // Tile fetch hiccups are not package failures; only report style/layer errors.
