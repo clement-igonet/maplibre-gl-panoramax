@@ -3,6 +3,14 @@
 ## main
 
 ### ✨ Features and improvements
+- _...Add new stuff here..._
+
+### 🐞 Bug fixes
+- _...Add new stuff here..._
+
+## 0.2.0
+
+### ✨ Features and improvements
 - **Street-view navigation** (`nav.js`, [#1](https://github.com/clement-igonet/maplibre-gl-panoramax/issues/1)):
   `viewerTarget()` (normalized picture → maplibre-gl-photosphere
   enter/goTo target incl. exif pose), `navTargets()` (pure selection:
@@ -27,7 +35,6 @@
   (version-bump PR → npm publish + tag + GitHub Release from this section).
 
 ### 🐞 Bug fixes
-- _...Add new stuff here..._
 
 ## 0.1.0
 
