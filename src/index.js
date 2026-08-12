@@ -12,6 +12,8 @@
 //              reachable-neighbour set (offsets/bearings for ground arrows)
 //   coverage.js coverage-map filters (type/date/user/model/collection) and
 //              themes (age colouring) as pure MapLibre expressions
+//   federation.js the instances directory: list every federated instance,
+//              resolve a picture's home instance (name, auth) for sign-in UIs
 //
 // Editing lives in THIS package by design (corrections belong to the data
 // source); viewers such as maplibre-gl-photosphere render the results. Feed
@@ -24,3 +26,4 @@ export * from './auth.js';
 export * from './gesture.js';
 export * from './nav.js';
 export * from './coverage.js';
+export * from './federation.js';

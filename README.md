@@ -83,6 +83,17 @@ setCoverageFilter(map, {});                         // clear
 applyCoverageTheme(map, 'age');                     // colour = capture year
 ```
 
+**Federation** (`federation.js`) — the whole federated network, not just the
+meta-catalog:
+
+```js
+import {getInstances, instanceForPicture} from 'maplibre-gl-panoramax';
+
+const instances = await getInstances();          // every harvested instance
+const home = instanceForPicture(pic, instances); // where edits/sign-in go
+// home.name, home.apiBase, home.authEnabled → label your "Connect" button
+```
+
 **Street-view navigation** (`nav.js`) — from a picture to the walkable set,
 ready for [maplibre-gl-photosphere](https://github.com/clement-igonet/maplibre-gl-photosphere):
 

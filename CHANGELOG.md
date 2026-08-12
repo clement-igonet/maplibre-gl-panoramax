@@ -3,6 +3,13 @@
 ## main
 
 ### ✨ Features and improvements
+- **Federation helpers** (`federation.js`, [#4](https://github.com/clement-igonet/maplibre-gl-panoramax/issues/4)):
+  `getInstances()`/`instancesRequest()`/`parseInstances()` — the
+  meta-catalog's `/instances` directory as normalized records (name, url,
+  `apiBase`, auth enabled, last harvest, temporal extent), and
+  `instanceForPicture()` resolving a picture's `homeApi` to its instance
+  record (slash/suffix tolerant) — e.g. to label the sign-in button with
+  the instance the user will authenticate against.
 - **Coverage filters & themes** (`coverage.js`, [#2](https://github.com/clement-igonet/maplibre-gl-panoramax/issues/2)):
   `coverageFilter()`/`setCoverageFilter()` — type, date range, user
   (account id), camera model and collection as pure MapLibre filter
