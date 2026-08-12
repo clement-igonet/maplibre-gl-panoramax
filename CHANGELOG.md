@@ -1,6 +1,15 @@
+## main
+### ✨ Features and improvements
+- _...Add new stuff here..._
+
+### 🐞 Bug fixes
+- _...Add new stuff here..._
+
+- #4: federation helpers — instances directory + home-instance resolution ([#11](https://github.com/clement-igonet/maplibre-gl-panoramax/pull/11)) (by [@clement-igonet](https://github.com/clement-igonet))
+- CI on PRs + npm consumption check (Pages page that relies on the published package) ([#8](https://github.com/clement-igonet/maplibre-gl-panoramax/pull/8)) (by [@clement-igonet](https://github.com/clement-igonet))
 # Changelog
 
-## main
+## 0.3.0
 
 ### ✨ Features and improvements
 - **Federation helpers** (`federation.js`, [#4](https://github.com/clement-igonet/maplibre-gl-panoramax/issues/4)):
@@ -20,7 +29,6 @@
   ('age') and exact restore of the stock colours ('default').
 
 ### 🐞 Bug fixes
-- _...Add new stuff here..._
 
 ## 0.2.0
 
