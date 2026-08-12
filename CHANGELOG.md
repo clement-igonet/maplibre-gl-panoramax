@@ -21,7 +21,7 @@
 ### 🐞 Bug fixes
 - _...Add new stuff here..._
 
-## 0.1.0 — 2026-08-11
+## 0.1.0
 
 First release — the Panoramax data/auth/edit layer extracted from
 [MapMax](https://github.com/clement-igonet/mapmax), where every piece shipped
