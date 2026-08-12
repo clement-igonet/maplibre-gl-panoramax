@@ -49,13 +49,15 @@ ssh panoramax 'cd ~/projects/maplibre-gl-panoramax && podman compose run --rm sm
      notes are the `## X.Y.Z` changelog section.
 - **Never push tags manually** — the workflow creates them. Keep changelog
   version headers exactly `## X.Y.Z` (release-notes extraction matches them).
-- **Bootstrap exception (0.1.0 only)**: npm trusted publishers can only be
-  configured on packages that already exist — publish the first version from
-  the test container with a granular npm token
-  (`podman compose run --rm -e NODE_AUTH_TOKEN test sh -c 'npm ci && npm publish --access public'`
-  with an `.npmrc` line `//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}`),
-  then add the trusted publisher on npmjs.com (repo
-  `clement-igonet/maplibre-gl-panoramax`, workflow `release.yml`).
+- **Bootstrap exception (0.1.0 only)**: trusted publishers and staged
+  publishing both require an existing package, so the very first publish is
+  an INTERACTIVE `npm publish` from the test container (`podman run -it …`),
+  approved with the maintainer's own 2FA in the browser when npm prints the
+  auth URL. No bypass-2FA tokens (deprecated: GitHub changelog 2026-07-08);
+  a plain granular token covers auth, `NODE_OPTIONS=--dns-result-order=ipv4first`
+  covers the VM's IPv6 egress vs IPv4 token allowlists. Then add the trusted
+  publisher on npmjs.com (repo `clement-igonet/maplibre-gl-panoramax`,
+  workflow `release.yml`), revoke the token, and never publish manually again.
 
 ## Conventions
 
