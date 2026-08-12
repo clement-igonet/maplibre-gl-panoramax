@@ -71,6 +71,27 @@ for (const delay of claimPollDelays()) {       // 200 on users/me = connected
 Everything is a pure request builder/parser — the caller owns `fetch`, tabs
 and token storage (keep tokens in `sessionStorage`, per instance).
 
+**Street-view navigation** (`nav.js`) — from a picture to the walkable set,
+ready for [maplibre-gl-photosphere](https://github.com/clement-igonet/maplibre-gl-photosphere):
+
+```js
+import {getPicture, navigationSet, viewerTarget, fetchTilesConfig} from 'maplibre-gl-panoramax';
+
+const pic = await getPicture(id);
+photosphere.enter({...viewerTarget(pic), tiles: pic.tiles ?? await fetchTilesConfig(pic)});
+
+const targets = await navigationSet(pic);        // one nearby search
+photosphere.setNavArrows(targets.slice(0, 2).map((t) => ({bearing: t.bearingDeg, id: t.pic.id})));
+photosphere.setNavPois(targets.map((t) => ({east: t.east, north: t.north, id: t.pic.id})));
+// on groundPick(px, py) → id: photosphere.goTo(targets.find(...).target)
+```
+
+Each entry carries `relation` (`next`/`prev` from the sequence links —
+always offered; `sequence`/`nearby` only within `maxDistanceM`), ground
+offsets in metres, bearing, distance, and the ready `target`. Pure selection
+(`navTargets`) and geometry (`offsetMeters`, `bearingBetween`) are exported
+for offline use and testing.
+
 ## Tests
 
 ```sh

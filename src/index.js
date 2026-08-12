@@ -8,6 +8,8 @@
 //   auth.js    browser sign-in to an instance: token generate → claim → poll
 //   gesture.js the pose-EDITOR algebra: compose "grab the photo" drags onto a
 //              capture pose, re-extract yaw/pitch/roll for the PATCH
+//   nav.js     the street-view graph: pictures → viewer targets + the
+//              reachable-neighbour set (offsets/bearings for ground arrows)
 //
 // Editing lives in THIS package by design (corrections belong to the data
 // source); viewers such as maplibre-gl-photosphere render the results. Feed
@@ -18,3 +20,4 @@ export * from './client.js';
 export * from './edit.js';
 export * from './auth.js';
 export * from './gesture.js';
+export * from './nav.js';
