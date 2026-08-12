@@ -1,6 +1,14 @@
+## main
+### ✨ Features and improvements
+- _...Add new stuff here..._
+
+### 🐞 Bug fixes
+- _...Add new stuff here..._
+
+- #1: street-view navigation — sequence graph as ready-to-render targets ([#6](https://github.com/clement-igonet/maplibre-gl-panoramax/pull/6)) (by [@clement-igonet](https://github.com/clement-igonet))
 # Changelog
 
-## main
+## 0.2.0
 
 ### ✨ Features and improvements
 - **Street-view navigation** (`nav.js`, [#1](https://github.com/clement-igonet/maplibre-gl-panoramax/issues/1)):
@@ -27,7 +35,6 @@
   (version-bump PR → npm publish + tag + GitHub Release from this section).
 
 ### 🐞 Bug fixes
-- _...Add new stuff here..._
 
 ## 0.1.0
 
