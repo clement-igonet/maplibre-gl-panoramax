@@ -1,6 +1,6 @@
 {
   "name": "maplibre-gl-panoramax",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "description": "Panoramax for MapLibre GL JS: browse the federated street-level imagery catalog (STAC client, map layers, tiled-HD configs) and write corrections back (pose/position PATCH, token claim flow). Pairs with maplibre-gl-photosphere for immersive viewing/editing.",
   "type": "module",
   "main": "src/index.js",
