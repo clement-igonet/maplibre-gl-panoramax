@@ -71,6 +71,18 @@ for (const delay of claimPollDelays()) {       // 200 on users/me = connected
 Everything is a pure request builder/parser — the caller owns `fetch`, tabs
 and token storage (keep tokens in `sessionStorage`, per instance).
 
+**Coverage filters & themes** (`coverage.js`) — narrow the map to what you
+care about, colour by capture age:
+
+```js
+import {setCoverageFilter, applyCoverageTheme} from 'maplibre-gl-panoramax';
+
+setCoverageFilter(map, {type: 'equirectangular', from: '2024-01-01'});
+setCoverageFilter(map, {collection: sequenceId});   // one sequence only
+setCoverageFilter(map, {});                         // clear
+applyCoverageTheme(map, 'age');                     // colour = capture year
+```
+
 **Street-view navigation** (`nav.js`) — from a picture to the walkable set,
 ready for [maplibre-gl-photosphere](https://github.com/clement-igonet/maplibre-gl-photosphere):
 
