@@ -10,6 +10,8 @@
 //              capture pose, re-extract yaw/pitch/roll for the PATCH
 //   nav.js     the street-view graph: pictures → viewer targets + the
 //              reachable-neighbour set (offsets/bearings for ground arrows)
+//   coverage.js coverage-map filters (type/date/user/model/collection) and
+//              themes (age colouring) as pure MapLibre expressions
 //
 // Editing lives in THIS package by design (corrections belong to the data
 // source); viewers such as maplibre-gl-photosphere render the results. Feed
@@ -21,3 +23,4 @@ export * from './edit.js';
 export * from './auth.js';
 export * from './gesture.js';
 export * from './nav.js';
+export * from './coverage.js';

@@ -3,7 +3,14 @@
 ## main
 
 ### ✨ Features and improvements
-- _...Add new stuff here..._
+- **Coverage filters & themes** (`coverage.js`, [#2](https://github.com/clement-igonet/maplibre-gl-panoramax/issues/2)):
+  `coverageFilter()`/`setCoverageFilter()` — type, date range, user
+  (account id), camera model and collection as pure MapLibre filter
+  expressions per layer (sequences compare `date`, pictures slice `ts`;
+  collection matches sequence id vs picture membership), built from the
+  properties the api.panoramax.xyz tiles actually carry.
+  `applyCoverageTheme()`/`ageColorExpression()` — capture-year colour ramp
+  ('age') and exact restore of the stock colours ('default').
 
 ### 🐞 Bug fixes
 - _...Add new stuff here..._
