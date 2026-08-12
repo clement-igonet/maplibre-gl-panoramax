@@ -1,12 +1,12 @@
+# Changelog
+
 ## main
+
 ### ✨ Features and improvements
 - _...Add new stuff here..._
 
 ### 🐞 Bug fixes
 - _...Add new stuff here..._
-
-- #1: street-view navigation — sequence graph as ready-to-render targets ([#6](https://github.com/clement-igonet/maplibre-gl-panoramax/pull/6)) (by [@clement-igonet](https://github.com/clement-igonet))
-# Changelog
 
 ## 0.2.0
 
