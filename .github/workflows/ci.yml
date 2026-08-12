@@ -1,0 +1,34 @@
+name: CI
+
+# Every PR and main push: the vitest suite plus the two browser smokes —
+# the repo demo (module graph + boot) and the npm consumption check
+# (docs/npm-check.html imports the PUBLISHED package from the CDN).
+# Release gating stays in release.yml; this is the pre-merge gate.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - run: npx vitest run
+
+  browser:
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/playwright:v1.47.2-jammy
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm install --no-audit --no-fund playwright@1.47.2
+      - name: Demo smoke + npm consumption smoke
+        run: |
+          python3 -m http.server 8080 &
+          sleep 1
+          TARGET_URL=http://localhost:8080/docs/ node tests/browser/demo-smoke.mjs
+          TARGET_URL=http://localhost:8080/docs/npm-check.html node tests/browser/npm-smoke.mjs
