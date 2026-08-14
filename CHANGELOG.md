@@ -3,6 +3,14 @@
 ## main
 
 ### ✨ Features and improvements
+- _...Add new stuff here..._
+
+### 🐞 Bug fixes
+- _...Add new stuff here..._
+
+## 0.3.0
+
+### ✨ Features and improvements
 - **Federation helpers** (`federation.js`, [#4](https://github.com/clement-igonet/maplibre-gl-panoramax/issues/4)):
   `getInstances()`/`instancesRequest()`/`parseInstances()` — the
   meta-catalog's `/instances` directory as normalized records (name, url,
@@ -20,7 +28,6 @@
   ('age') and exact restore of the stock colours ('default').
 
 ### 🐞 Bug fixes
-- _...Add new stuff here..._
 
 ## 0.2.0
 
