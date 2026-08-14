@@ -7,10 +7,13 @@
 #                                     # TARGET_URL overrides, e.g. the live
 #                                     # Pages URL after a deploy
 #
-# PORT POLICY: panoramax owns the 85xx band (platform table,
-# confinia/platform#5): 8500 prod router, 8501 green (TEMPORARILY held by
-# confinia-staging — do not bind until `ss` shows it free), 8502 staging,
-# 8503 sandbox, 8504 dev preview. Never bind outside the band.
+# PORT POLICY: panoramax = product digit 7 in the platform's 1PESI scheme
+# (5 digits: 1 · product · env · service · instance — platform RULES.md §3,
+# migration of platform PR #6): 17000 www, 17210/17220 green web/api (not
+# yet built), 17300 staging, 17400 sandbox, 17500 dev preview. The legacy
+# 85xx ports stay bound ALONGSIDE until the platform flips the edge routes
+# and confirms decommission (both ranges are ours during the migration);
+# 8501 was never ours (confinia squat). Never bind outside these ranges.
 services:
   test:
     image: docker.io/library/node:22-alpine
@@ -22,10 +25,11 @@ services:
 
   web:
     image: docker.io/library/caddy:2-alpine
-    # Dev preview on the band's 8504 (also http://web/ inside the compose
-    # network, which is how the smoke services reach it).
+    # Dev preview on 17500 (also http://web/ inside the compose network,
+    # which is how the smoke services reach it). Not edge-routed, so it
+    # migrates directly — no 8504 legacy binding kept.
     ports:
-      - "127.0.0.1:${WEB_PORT:-8504}:80"
+      - "127.0.0.1:${WEB_PORT:-17500}:80"
     volumes:
       - .:/srv:ro
     command: caddy file-server --root /srv --listen :80
@@ -37,7 +41,8 @@ services:
   www:
     image: docker.io/library/caddy:2-alpine
     ports:
-      - "127.0.0.1:8500:80"
+      - "127.0.0.1:17000:80" # 1PESI
+      - "127.0.0.1:8500:80" # legacy 85xx — serves the edge until the flip; drop at decommission
     volumes:
       - .:/srv:ro
     command: caddy file-server --root /srv --listen :80
@@ -46,7 +51,8 @@ services:
   staging:
     image: docker.io/library/caddy:2-alpine
     ports:
-      - "127.0.0.1:8502:80"
+      - "127.0.0.1:17300:80" # 1PESI
+      - "127.0.0.1:8502:80" # legacy 85xx — serves the edge until the flip; drop at decommission
     volumes:
       - .:/srv:ro
     command: caddy file-server --root /srv --listen :80
@@ -55,7 +61,8 @@ services:
   sandbox:
     image: docker.io/library/caddy:2-alpine
     ports:
-      - "127.0.0.1:8503:80"
+      - "127.0.0.1:17400:80" # 1PESI
+      - "127.0.0.1:8503:80" # legacy 85xx — serves the edge until the flip; drop at decommission
     volumes:
       - .:/srv:ro
     command: caddy file-server --root /srv --listen :80

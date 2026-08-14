@@ -20,14 +20,15 @@ rsync -ac --delete --exclude node_modules --exclude .git \
     ./ panoramax:projects/maplibre-gl-panoramax/
 ssh panoramax 'cd ~/projects/maplibre-gl-panoramax && podman compose run --rm test'
 
-# preview the demo on 127.0.0.1:8504 (panoramax band 85xx, granted in
-# confinia/platform#5 — merged 2026-08-12; 8501 stays off-limits while
-# confinia-staging squats it):
+# preview the demo on 127.0.0.1:17500 (1PESI scheme: product digit 7 —
+# platform RULES.md §3; the legacy 85xx band is being decommissioned):
 ssh panoramax 'cd ~/projects/maplibre-gl-panoramax && podman compose up -d web'
 
-# confinia environments (once the edge routes the hostnames):
-#   8500 www · 8502 staging · 8503 sandbox — static file-servers over this
-#   tree, `restart: unless-stopped`, under the lingering panoramax user:
+# confinia environments — 1PESI ports (17000 www · 17300 staging · 17400
+# sandbox; 17210/17220 reserved for green web/api), static file-servers over
+# this tree, `restart: unless-stopped`, under the lingering panoramax user.
+# Legacy 8500/8502/8503 stay dual-published until the platform flips the
+# edge and confirms decommission (migration of platform PR #6):
 ssh panoramax 'cd ~/projects/maplibre-gl-panoramax && podman compose up -d www staging sandbox'
 
 # browser smoke of the demo — REQUIRED after touching docs/ or src/ exports:
