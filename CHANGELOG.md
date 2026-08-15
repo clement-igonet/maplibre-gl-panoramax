@@ -3,7 +3,11 @@
 ## main
 
 ### ✨ Features and improvements
-- _...Add new stuff here..._
+- Deployment ([#10](https://github.com/clement-igonet/maplibre-gl-panoramax/issues/10)):
+  systemd user units (`deploy/systemd/`) — `panoramax-stacks.service` keeps
+  www/staging/sandbox up across reboots; `panoramax-deploy.timer` pulls the
+  serving checkout to origin/main every 5 min (merge-to-main = deploy).
+  Prod serves from `~/serve/…` (git checkout), tests from the rsync mirror.
 
 ### 🐞 Bug fixes
 - _...Add new stuff here..._

@@ -1,0 +1,21 @@
+# panoramax public stacks (www/staging/sandbox) — systemd USER unit for the
+# `panoramax` VM account (linger enabled, so it starts at boot).
+# Runs from the SERVING checkout ~/serve/maplibre-gl-panoramax (auto-pulled
+# main — see panoramax-deploy.timer), NOT the rsync working mirror.
+# Install: cp deploy/systemd/*.{service,timer} ~/.config/systemd/user/ &&
+#          systemctl --user daemon-reload && systemctl --user enable --now \
+#          panoramax-stacks.service panoramax-deploy.timer
+[Unit]
+Description=panoramax static stacks (www 17000, staging 17300, sandbox 17400)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=%h/serve/maplibre-gl-panoramax
+ExecStart=/usr/bin/podman compose up -d www staging sandbox
+ExecStop=/usr/bin/podman compose down
+
+[Install]
+WantedBy=default.target

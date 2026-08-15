@@ -1,0 +1,11 @@
+# One deploy tick: fast-forward the serving checkout to origin/main and let
+# compose reconcile (static files are volume-mounted, so a pull IS the deploy;
+# `up -d` only recreates containers when the compose file itself changed).
+[Unit]
+Description=panoramax deploy: pull main into the serving checkout
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/serve/maplibre-gl-panoramax
+ExecStart=/usr/bin/git pull --ff-only
+ExecStart=/usr/bin/podman compose up -d www staging sandbox
