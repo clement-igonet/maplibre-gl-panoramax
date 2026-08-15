@@ -1,6 +1,8 @@
-# One deploy tick: fast-forward the serving checkout to origin/main and let
-# compose reconcile (static files are volume-mounted, so a pull IS the deploy;
-# `up -d` only recreates containers when the compose file itself changed).
+# One deploy tick: fast-forward the serving checkout to origin/main. The
+# static tree is volume-mounted, so the pull IS the deploy — deliberately NO
+# compose call here: podman-compose's `up -d` is not idempotent (it recreates
+# running containers, a micro-outage per tick). After a docker-compose.yml
+# change, restart the stacks once: systemctl --user restart panoramax-stacks.
 [Unit]
 Description=panoramax deploy: pull main into the serving checkout
 
@@ -8,4 +10,3 @@ Description=panoramax deploy: pull main into the serving checkout
 Type=oneshot
 WorkingDirectory=%h/serve/maplibre-gl-panoramax
 ExecStart=/usr/bin/git pull --ff-only
-ExecStart=/usr/bin/podman compose up -d www staging sandbox
