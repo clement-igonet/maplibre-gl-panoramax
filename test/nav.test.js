@@ -102,3 +102,19 @@ describe('navTargets', () => {
         expect(t.distanceM).toBeCloseTo(10, 6);
     });
 });
+
+describe('flat pictures glue (#3)', () => {
+    test('flat pictures carry projection + hfov, no tiles', () => {
+        const t = viewerTarget(pic('f', 2, 48, {type: 'flat', hfov: 62, tiles: {cols: 8}}));
+        expect(t.projection).toBe('flat');
+        expect(t.hfov).toBe(62);
+        expect(t.tiles).toBeNull();
+    });
+
+    test('360 pictures stay untouched (no projection field, tiles kept)', () => {
+        const t = viewerTarget(pic('e', 2, 48, {type: 'equirectangular', hfov: 360, tiles: {cols: 8}}));
+        expect(t.projection).toBeUndefined();
+        expect(t.hfov).toBeUndefined();
+        expect(t.tiles).toEqual({cols: 8});
+    });
+});

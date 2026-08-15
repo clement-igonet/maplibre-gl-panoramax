@@ -45,7 +45,13 @@ export function viewerTarget(pic) {
         bearing: pic.heading ?? 0,
         panoPitch: pic.exifPose?.pitch,
         panoRoll: pic.exifPose?.roll,
-        tiles: pic.tiles || null,
+        // Flat captures render as a perspective window (photosphere ≥ 0.5,
+        // its issue #3): pass the projection + metadata hfov; the viewer
+        // derives vfov from the actual image aspect. normalizeItem's type is
+        // authoritative-360-only, so flat wide frames stay flat.
+        projection: pic.type === 'flat' ? 'flat' : undefined,
+        hfov: pic.type === 'flat' ? pic.hfov : undefined,
+        tiles: pic.type === 'flat' ? null : (pic.tiles || null),
     };
 }
 

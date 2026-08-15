@@ -3,7 +3,11 @@
 ## main
 
 ### ✨ Features and improvements
-- _...Add new stuff here..._
+- **Flat pictures glue** ([#3](https://github.com/clement-igonet/maplibre-gl-panoramax/issues/3)):
+  `viewerTarget()` passes `projection: 'flat'` + the metadata `hfov` for
+  non-360 pictures (and drops tiles, which are equirect-only) — pairs with
+  maplibre-gl-photosphere's perspective-window rendering
+  ([its #3](https://github.com/clement-igonet/maplibre-gl-photosphere/issues/3)).
 
 ### 🐞 Bug fixes
 - _...Add new stuff here..._
