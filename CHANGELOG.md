@@ -1,6 +1,15 @@
+## main
+### ✨ Features and improvements
+- _...Add new stuff here..._
+
+### 🐞 Bug fixes
+- _...Add new stuff here..._
+
+- #3: flat-pictures glue — viewerTarget projection/hfov ([#13](https://github.com/clement-igonet/maplibre-gl-panoramax/pull/13)) (by [@clement-igonet](https://github.com/clement-igonet))
+- #1: street-view navigation — sequence graph as ready-to-render targets ([#6](https://github.com/clement-igonet/maplibre-gl-panoramax/pull/6)) (by [@clement-igonet](https://github.com/clement-igonet))
 # Changelog
 
-## main
+## 0.4.0
 
 ### ✨ Features and improvements
 - **Flat pictures glue** ([#3](https://github.com/clement-igonet/maplibre-gl-panoramax/issues/3)):
@@ -10,7 +19,6 @@
   ([its #3](https://github.com/clement-igonet/maplibre-gl-photosphere/issues/3)).
 
 ### 🐞 Bug fixes
-- _...Add new stuff here..._
 
 ## 0.3.0
 
